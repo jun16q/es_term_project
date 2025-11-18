@@ -18,7 +18,8 @@ RM := rm -rf
 -include Middlewares/ST/BlueNRG-MS/hci/controller/subdir.mk
 -include Middlewares/ST/BlueNRG-MS/hci/subdir.mk
 -include Drivers/STM32L4xx_HAL_Driver/Src/subdir.mk
--include Drivers/BSP/B-L4S5I-IOT01A/subdir.mk
+-include Drivers/BSP/components/lsm6dsl/subdir.mk
+-include Drivers/BSP/B-L475E-IOT01A2/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include BlueNRG_MS/Target/subdir.mk
@@ -71,8 +72,8 @@ all: main-build
 main-build: es_term_project.elf secondary-outputs
 
 # Tool invocations
-es_term_project.elf es_term_project.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSystem\es_term_project\STM32L4S5VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "es_term_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSystem\es_term_project\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="es_term_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+es_term_project.elf es_term_project.map: $(OBJS) $(USER_OBJS) C:\Users\ryfu\STM32CubeIDE\workspace_final_project\es_term_project\STM32L4S5VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "es_term_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ryfu\STM32CubeIDE\workspace_final_project\es_term_project\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="es_term_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

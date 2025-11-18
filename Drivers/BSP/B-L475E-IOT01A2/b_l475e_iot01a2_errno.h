@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : b_l4s5i_iot01a_errno.h
+  * @file           : b_l475e_iot01a2_errno.h
   * @brief          : Error Code
   ******************************************************************************
   * @attention
@@ -18,8 +18,8 @@
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef B_L4S5I_IOT01A_ERRNO_H
-#define B_L4S5I_IOT01A_ERRNO_H
+#ifndef B_L475E_IOT01A2_ERRNO_H
+#define B_L475E_IOT01A2_ERRNO_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -54,5 +54,5 @@
 #ifdef __cplusplus
 }
 #endif
-#endif /*B_L4S5I_IOT01A_ERRNO_H */
+#endif /*B_L475E_IOT01A2_ERRNO_H */
 

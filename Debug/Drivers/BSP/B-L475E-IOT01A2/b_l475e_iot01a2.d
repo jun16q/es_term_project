@@ -1,7 +1,7 @@
-Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.o: \
- ../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.c \
- ../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.h \
- ../Core/Inc/b_l4s5i_iot01a_conf.h \
+Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.o: \
+ ../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.c \
+ ../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.h \
+ ../Core/Inc/b_l475e_iot01a2_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -41,12 +41,12 @@ Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.o: \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a_errno.h ../Core/Inc/main.h \
- ../BlueNRG_MS/Target/hci_tl_interface.h \
- ../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a_bus.h \
- ../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.h
-../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.h:
-../Core/Inc/b_l4s5i_iot01a_conf.h:
+ ../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2_errno.h \
+ ../Core/Inc/main.h ../BlueNRG_MS/Target/hci_tl_interface.h \
+ ../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2_bus.h \
+ ../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.h
+../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.h:
+../Core/Inc/b_l475e_iot01a2_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h:
@@ -86,8 +86,8 @@ Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.o: \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a_errno.h:
+../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2_errno.h:
 ../Core/Inc/main.h:
 ../BlueNRG_MS/Target/hci_tl_interface.h:
-../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a_bus.h:
-../Drivers/BSP/B-L4S5I-IOT01A/b_l4s5i_iot01a.h:
+../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2_bus.h:
+../Drivers/BSP/B-L475E-IOT01A2/b_l475e_iot01a2.h:
