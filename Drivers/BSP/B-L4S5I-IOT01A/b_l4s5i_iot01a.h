@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file  : b_l475e_iot01a2.h
+  * @file  : b_l4s5i_iot01a.h
   * @brief : header file for the BSP Common driver
   ******************************************************************************
   * @attention
@@ -18,16 +18,16 @@
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __B_L475E_IOT01A2_H
-#define __B_L475E_IOT01A2_H
+#ifndef __B_L4S5I_IOT01A_H
+#define __B_L4S5I_IOT01A_H
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "b_l475e_iot01a2_conf.h"
-#include "b_l475e_iot01a2_errno.h"
+#include "b_l4s5i_iot01a_conf.h"
+#include "b_l4s5i_iot01a_errno.h"
 #include "main.h"
 
 #if (USE_BSP_COM_FEATURE > 0)
@@ -41,11 +41,11 @@
  * @{
  */
 
-/** @defgroup B_L475E_IOT01A2
+/** @defgroup B_L4S5I_IOT01A
  * @{
  */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL
  * @{
  */
 
@@ -55,30 +55,30 @@
 /**
  * @brief STM32L4XX NUCLEO BSP Driver version number V1.0.0
  */
-#define __B_L475E_IOT01A2_BSP_VERSION_MAIN   (uint32_t)(0x01) /*!< [31:24] main version */
-#define __B_L475E_IOT01A2_BSP_VERSION_SUB1   (uint32_t)(0x00) /*!< [23:16] sub1 version */
-#define __B_L475E_IOT01A2_BSP_VERSION_SUB2   (uint32_t)(0x00) /*!< [15:8]  sub2 version */
-#define __B_L475E_IOT01A2_BSP_VERSION_RC     (uint32_t)(0x00) /*!< [7:0]  release candidate */
-#define __B_L475E_IOT01A2_BSP_VERSION        ((__B_L475E_IOT01A2_BSP_VERSION_MAIN << 24)\
-                                                    |(__B_L475E_IOT01A2_BSP_VERSION_SUB1 << 16)\
-                                                    |(__B_L475E_IOT01A2_BSP_VERSION_SUB2 << 8 )\
-                                                    |(__B_L475E_IOT01A2_BSP_VERSION_RC))
+#define __B_L4S5I_IOT01A_BSP_VERSION_MAIN   (uint32_t)(0x01) /*!< [31:24] main version */
+#define __B_L4S5I_IOT01A_BSP_VERSION_SUB1   (uint32_t)(0x00) /*!< [23:16] sub1 version */
+#define __B_L4S5I_IOT01A_BSP_VERSION_SUB2   (uint32_t)(0x00) /*!< [15:8]  sub2 version */
+#define __B_L4S5I_IOT01A_BSP_VERSION_RC     (uint32_t)(0x00) /*!< [7:0]  release candidate */
+#define __B_L4S5I_IOT01A_BSP_VERSION        ((__B_L4S5I_IOT01A_BSP_VERSION_MAIN << 24)\
+                                                    |(__B_L4S5I_IOT01A_BSP_VERSION_SUB1 << 16)\
+                                                    |(__B_L4S5I_IOT01A_BSP_VERSION_SUB2 << 8 )\
+                                                    |(__B_L4S5I_IOT01A_BSP_VERSION_RC))
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_Exported_Types B_L475E_IOT01A2 LOW LEVEL Exported Types
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_Exported_Types B_L4S5I_IOT01A LOW LEVEL Exported Types
  * @{
  */
 
  /**
-  * @brief Define for B_L475E_IOT01A2 board
+  * @brief Define for B_L4S5I_IOT01A board
   */
-#if !defined (USE_B_L475E_IOT01A2)
- #define USE_B_L475E_IOT01A2
+#if !defined (USE_B_L4S5I_IOT01A)
+ #define USE_B_L4S5I_IOT01A
 #endif
 #ifndef USE_BSP_COM_FEATURE
    #define USE_BSP_COM_FEATURE                  0U
 #endif
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_LED B_L475E_IOT01A2 LOW LEVEL LED
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_LED B_L4S5I_IOT01A LOW LEVEL LED
  * @{
  */
 /** Define number of LED            **/
@@ -99,7 +99,7 @@
  * @}
  */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_BUTTON B_L475E_IOT01A2 LOW LEVEL BUTTON
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_BUTTON B_L4S5I_IOT01A LOW LEVEL BUTTON
  * @{
  */
 /* Button state */
@@ -127,30 +127,14 @@
 /**
  * @}
  */
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_COM B_L475E_IOT01A2 LOW LEVEL COM
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_COM B_L4S5I_IOT01A LOW LEVEL COM
  * @{
  */
-/**
- * @brief Definition for COM portx, connected to USART1
- */
-
-#define BUS_USART1_INSTANCE USART1
-#define BUS_USART1_TX_GPIO_PIN GPIO_PIN_6
-#define BUS_USART1_TX_GPIO_PORT GPIOB
-#define BUS_USART1_TX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define BUS_USART1_TX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOB_CLK_DISABLE()
-#define BUS_USART1_TX_GPIO_AF GPIO_AF7_USART1
-#define BUS_USART1_RX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define BUS_USART1_RX_GPIO_PORT GPIOB
-#define BUS_USART1_RX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOB_CLK_DISABLE()
-#define BUS_USART1_RX_GPIO_PIN GPIO_PIN_7
-#define BUS_USART1_RX_GPIO_AF GPIO_AF7_USART1
-
 /**
  * @}
  */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_Exported_Types LOW LEVEL Exported Types
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_Exported_Types LOW LEVEL Exported Types
   * @{
   */
 #ifndef USE_BSP_COM
@@ -233,24 +217,10 @@ typedef struct
 #define MX_UART_StopBitsTypeDef      COM_StopBitsTypeDef
 #define MX_UART_ParityTypeDef        COM_ParityTypeDef
 #define MX_UART_HwFlowCtlTypeDef     COM_HwFlowCtlTypeDef
-#if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
-typedef struct
-{
-  void (* pMspInitCb)(UART_HandleTypeDef *);
-  void (* pMspDeInitCb)(UART_HandleTypeDef *);
-} BSP_COM_Cb_t;
-#endif /* (USE_HAL_UART_REGISTER_CALLBACKS == 1U) */
 
 /**
  * @}
  */
-
-#define COMn                             1U
-#define COM1_UART                        USART1
-
-#define COM_POLL_TIMEOUT                 1000
-extern UART_HandleTypeDef hcom_uart[COMn];
-//#define  huart1 hcom_uart[COM1]
 
 /**
  * @}
@@ -264,7 +234,7 @@ extern UART_HandleTypeDef hcom_uart[COMn];
   * @}
   */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_Exported_Variables LOW LEVEL Exported Constants
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_Exported_Variables LOW LEVEL Exported Constants
   * @{
   */
 extern EXTI_HandleTypeDef hpb_exti[BUTTONn];
@@ -272,7 +242,7 @@ extern EXTI_HandleTypeDef hpb_exti[BUTTONn];
   * @}
   */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_Exported_Functions B_L475E_IOT01A2 LOW LEVEL Exported Functions
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_Exported_Functions B_L4S5I_IOT01A LOW LEVEL Exported Functions
  * @{
  */
 
@@ -288,71 +258,11 @@ int32_t  BSP_PB_DeInit(Button_TypeDef Button);
 int32_t  BSP_PB_GetState(Button_TypeDef Button);
 void     BSP_PB_Callback(Button_TypeDef Button);
 void     BSP_PB_IRQHandler(Button_TypeDef Button);
-#if (USE_BSP_COM_FEATURE > 0)
-int32_t  BSP_COM_Init(COM_TypeDef COM);
-int32_t  BSP_COM_DeInit(COM_TypeDef COM);
-#endif
-
-#if (USE_COM_LOG > 0)
-int32_t  BSP_COM_SelectLogPort(COM_TypeDef COM);
-#endif
-
-#if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
-int32_t BSP_COM_RegisterDefaultMspCallbacks(COM_TypeDef COM);
-int32_t BSP_COM_RegisterMspCallbacks(COM_TypeDef COM , BSP_COM_Cb_t *Callback);
-#endif /* USE_HAL_UART_REGISTER_CALLBACKS */
 
 /**
  * @}
  */
 
-#define DISCOVERY_I2Cx                             I2C2
-#define DISCOVERY_I2Cx_CLK_ENABLE()                __HAL_RCC_I2C2_CLK_ENABLE()
-#define DISCOVERY_I2Cx_CLK_DISABLE()               __HAL_RCC_I2C2_CLK_DISABLE()
-#define DISCOVERY_DMAx_CLK_ENABLE()                __HAL_RCC_DMA1_CLK_ENABLE()
-#define DISCOVERY_I2Cx_SCL_SDA_GPIO_CLK_ENABLE()   __HAL_RCC_GPIOB_CLK_ENABLE()
-#define DISCOVERY_I2Cx_SCL_SDA_GPIO_CLK_DISABLE()  __HAL_RCC_GPIOB_CLK_DISABLE()
-
-
-#define DISCOVERY_I2Cx_FORCE_RESET()               __HAL_RCC_I2C2_FORCE_RESET()
-#define DISCOVERY_I2Cx_RELEASE_RESET()             __HAL_RCC_I2C2_RELEASE_RESET()
-
-/* Definition for I2Cx Pins */
-#define DISCOVERY_I2Cx_SCL_PIN                     GPIO_PIN_10
-#define DISCOVERY_I2Cx_SDA_PIN                     GPIO_PIN_11
-#define DISCOVERY_I2Cx_SCL_SDA_GPIO_PORT           GPIOB
-#define DISCOVERY_I2Cx_SCL_SDA_AF                  GPIO_AF4_I2C2
-
-/* I2C interrupt requests */
-#define DISCOVERY_I2Cx_EV_IRQn                     I2C2_EV_IRQn
-#define DISCOVERY_I2Cx_ER_IRQn                     I2C2_ER_IRQn
-
-/* I2C clock speed configuration (in Hz)
-  WARNING:
-   Make sure that this define is not already declared in other files.
-   It can be used in parallel by other modules. */
-#ifndef DISCOVERY_I2C_SPEED
- #define DISCOVERY_I2C_SPEED                             100000
-#endif /* DISCOVERY_I2C_SPEED */
-
-#ifndef DISCOVERY_I2Cx_TIMING
-#define DISCOVERY_I2Cx_TIMING                     ((uint32_t)0x00702681)
-#endif /* DISCOVERY_I2Cx_TIMING */
-
-
-/* I2C Sensors address */
-/* LPS22HB (Pressure) I2C Address */
-#define LPS22HB_I2C_ADDRESS  (uint8_t)0xBA
-/* HTS221 (Humidity) I2C Address */
-#define HTS221_I2C_ADDRESS   (uint8_t)0xBE
-
-#ifdef USE_LPS22HB_TEMP
-/* LPS22HB Sensor hardware I2C address */
-#define TSENSOR_I2C_ADDRESS     LPS22HB_I2C_ADDRESS
-#else /* USE_HTS221_TEMP */
-/* HTS221 Sensor hardware I2C address */
-#define TSENSOR_I2C_ADDRESS     HTS221_I2C_ADDRESS
-#endif
 /**
  * @}
  */
@@ -368,4 +278,5 @@ int32_t BSP_COM_RegisterMspCallbacks(COM_TypeDef COM , BSP_COM_Cb_t *Callback);
 }
 #endif
 
-#endif /* __B_L475E_IOT01A2__H */
+#endif /* __B_L4S5I_IOT01A__H */
+

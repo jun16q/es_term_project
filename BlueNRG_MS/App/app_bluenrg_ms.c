@@ -28,7 +28,7 @@
 
 #include "compiler.h"
 #include "bluenrg_utils.h"
-#include "b_l475e_iot01a2.h"
+#include "b_l4s5i_iot01a.h"
 #include "bluenrg_gap.h"
 #include "bluenrg_gap_aci.h"
 #include "bluenrg_gatt_aci.h"
@@ -238,7 +238,7 @@ static void User_Init(void)
   BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
   BSP_LED_Init(LED2);
 
-  BSP_COM_Init(COM1);
+//  BSP_COM_Init(COM1);
 }
 
 /**

@@ -20,7 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "lsm6dsl.h"
-#include "b_l475e_iot01a2_bus.h"
+#include "b_l4s5i_iot01a_bus.h"
 
 /** @addtogroup BSP
   * @{

@@ -1,7 +1,7 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : b_l475e_iot01a2_bus.c
+  * @file           : b_l4s5i_iot01a_bus.c
   * @brief          : source file for the BSP BUS IO driver
   ******************************************************************************
   * @attention
@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include "b_l475e_iot01a2_bus.h"
+#include "b_l4s5i_iot01a_bus.h"
 
 __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
 
@@ -26,15 +26,15 @@ __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
   * @{
   */
 
-/** @addtogroup B_L475E_IOT01A2
+/** @addtogroup B_L4S5I_IOT01A
   * @{
   */
 
-/** @defgroup B_L475E_IOT01A2_BUS B_L475E_IOT01A2 BUS
+/** @defgroup B_L4S5I_IOT01A_BUS B_L4S5I_IOT01A BUS
   * @{
   */
 
-/** @defgroup B_L475E_IOT01A2_BUS_Exported_Variables BUS Exported Variables
+/** @defgroup B_L4S5I_IOT01A_BUS_Exported_Variables BUS Exported Variables
   * @{
   */
 
@@ -43,7 +43,7 @@ SPI_HandleTypeDef hspi3;
   * @}
   */
 
-/** @defgroup B_L475E_IOT01A2_BUS_Private_Variables BUS Private Variables
+/** @defgroup B_L4S5I_IOT01A_BUS_Private_Variables BUS Private Variables
   * @{
   */
 
@@ -56,7 +56,7 @@ static uint32_t SPI3InitCounter = 0;
   * @}
   */
 
-/** @defgroup B_L475E_IOT01A2_BUS_Private_FunctionPrototypes  BUS Private Function
+/** @defgroup B_L4S5I_IOT01A_BUS_Private_FunctionPrototypes  BUS Private Function
   * @{
   */
 
@@ -70,11 +70,11 @@ static uint32_t SPI_GetPrescaler( uint32_t clk_src_hz, uint32_t baudrate_mbps );
   * @}
   */
 
-/** @defgroup B_L475E_IOT01A2_LOW_LEVEL_Private_Functions B_L475E_IOT01A2 LOW LEVEL Private Functions
+/** @defgroup B_L4S5I_IOT01A_LOW_LEVEL_Private_Functions B_L4S5I_IOT01A LOW LEVEL Private Functions
   * @{
   */
 
-/** @defgroup B_L475E_IOT01A2_BUS_Exported_Functions B_L475E_IOT01A2_BUS Exported Functions
+/** @defgroup B_L4S5I_IOT01A_BUS_Exported_Functions B_L4S5I_IOT01A_BUS Exported Functions
   * @{
   */
 
@@ -273,7 +273,7 @@ __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi)
   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
-  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

@@ -30,7 +30,7 @@ extern "C" {
 #include "stm32l4xx_hal.h"
 
 #include "hci_tl_interface.h"
-#include "b_l475e_iot01a2.h"
+#include "b_l4s5i_iot01a.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
