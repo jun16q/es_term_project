@@ -133,7 +133,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  BSP_ACCELERO_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -183,7 +183,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 512);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of myTask02 */
@@ -990,7 +990,10 @@ void StartDefaultTask(void const * argument)
   /* USER CODE BEGIN 5 */
   for(;;)
   {
-    osDelay(2000);
+    int16_t pDataXYZ[3];
+	BSP_ACCELERO_AccGetXYZ(pDataXYZ);
+	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
+    osDelay(200);
   }
   /* USER CODE END 5 */
 }
@@ -1037,7 +1040,6 @@ void StartTask02(void const * argument)
 	if ( status != ARM_MATH_SUCCESS)
 	{
 	  printf("failed!!\r\n");
-	  while (1);
 	}
     osDelay(1000);
   }
