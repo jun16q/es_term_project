@@ -20,12 +20,14 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "app_bluenrg_ms.h"
+#include "my_data.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "arm_math.h"
 #include "math_helper.h"
+//#include "my_data.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,6 +87,8 @@ float32_t  snr;
 
 int down = 0;
 int side = 0;
+uint8_t motionNum = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -186,11 +190,11 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 512);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityHigh, 0, 512);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of myTask02 */
-  osThreadDef(myTask02, StartTask02, osPriorityHigh, 0, 128);
+  osThreadDef(myTask02, StartTask02, osPriorityNormal, 0, 512);
   myTask02Handle = osThreadCreate(osThread(myTask02), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -1001,6 +1005,7 @@ void StartDefaultTask(void const * argument)
 	if (pDataXYZ[1]>1400 && down == 0){
 		down = 1;
 		printf("down\r\n");
+		motionNum += 2;
 		osDelay(200);
 	}
 	if (pDataXYZ[1]<500 && down == 1){
@@ -1009,11 +1014,13 @@ void StartDefaultTask(void const * argument)
 	if (pDataXYZ[2]<-1400 && side == 0){
 		side = 1;
 		printf("side\r\n");
+		motionNum += 1;
 		osDelay(200);
 	}
 	if (pDataXYZ[2]>-500 && side == 1){
 		side = 0;
 	}
+
 
     osDelay(20);
   }
@@ -1034,36 +1041,38 @@ void StartTask02(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    uint32_t i;
-    arm_fir_instance_f32 S;
-    arm_status status;
-    float32_t  *inputF32, *outputF32;
-	inputF32 = &testInput_f32_1kHz_15kHz[0];
-	outputF32 = &testOutput[0];
-
-	arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&firCoeffs32[0], &firStateF32[0], blockSize);
-
-	for(i=0; i < numBlocks; i++)
-	{
-	  arm_fir_f32(&S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);
-	}
-	snr = arm_snr_f32(&refOutput[0], &testOutput[0], TEST_LENGTH_SAMPLES);
-
-	if (snr < SNR_THRESHOLD_F32)
-	{
-	  status = ARM_MATH_TEST_FAILURE;
-	}
-	else
-	{
-	  status = ARM_MATH_SUCCESS;
-//	  printf("success!!\r\n");
-	}
-
-	if ( status != ARM_MATH_SUCCESS)
-	{
-//	  printf("failed!!\r\n");
-	}
-    osDelay(10000);
+//    uint32_t i;
+//    arm_fir_instance_f32 S;
+//    arm_status status;
+//    float32_t  *inputF32, *outputF32;
+//	inputF32 = &testInput_f32_1kHz_15kHz[0];
+//	outputF32 = &testOutput[0];
+//
+//	arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&firCoeffs32[0], &firStateF32[0], blockSize);
+//
+//	for(i=0; i < numBlocks; i++)
+//	{
+//	  arm_fir_f32(&S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);
+//	}
+//	snr = arm_snr_f32(&refOutput[0], &testOutput[0], TEST_LENGTH_SAMPLES);
+//
+//	if (snr < SNR_THRESHOLD_F32)
+//	{
+//	  status = ARM_MATH_TEST_FAILURE;
+//	}
+//	else
+//	{
+//	  status = ARM_MATH_SUCCESS;
+////	  printf("success!!\r\n");
+//	}
+//
+//	if ( status != ARM_MATH_SUCCESS)
+//	{
+////	  printf("failed!!\r\n");
+//	}
+//    osDelay(10000);
+	  MX_BlueNRG_MS_Process();
+	  osDelay(1);
   }
   /* USER CODE END StartTask02 */
 }
