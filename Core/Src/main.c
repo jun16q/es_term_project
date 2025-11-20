@@ -82,6 +82,9 @@ const float32_t firCoeffs32[NUM_TAPS] = {
 uint32_t blockSize = BLOCK_SIZE;
 uint32_t numBlocks = TEST_LENGTH_SAMPLES/BLOCK_SIZE;
 float32_t  snr;
+
+int down = 0;
+int side = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -985,15 +988,34 @@ static void MX_GPIO_Init(void)
   * @retval None
   */
 /* USER CODE END Header_StartDefaultTask */
+
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
   for(;;)
   {
     int16_t pDataXYZ[3];
+
 	BSP_ACCELERO_AccGetXYZ(pDataXYZ);
-	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
-    osDelay(200);
+//	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
+	if (pDataXYZ[1]>1400 && down == 0){
+		down = 1;
+		printf("down\r\n");
+		osDelay(200);
+	}
+	if (pDataXYZ[1]<500 && down == 1){
+		down = 0;
+	}
+	if (pDataXYZ[2]<-1400 && side == 0){
+		side = 1;
+		printf("side\r\n");
+		osDelay(200);
+	}
+	if (pDataXYZ[2]>-500 && side == 1){
+		side = 0;
+	}
+
+    osDelay(20);
   }
   /* USER CODE END 5 */
 }
@@ -1034,14 +1056,14 @@ void StartTask02(void const * argument)
 	else
 	{
 	  status = ARM_MATH_SUCCESS;
-	  printf("success!!\r\n");
+//	  printf("success!!\r\n");
 	}
 
 	if ( status != ARM_MATH_SUCCESS)
 	{
-	  printf("failed!!\r\n");
+//	  printf("failed!!\r\n");
 	}
-    osDelay(1000);
+    osDelay(10000);
   }
   /* USER CODE END StartTask02 */
 }
