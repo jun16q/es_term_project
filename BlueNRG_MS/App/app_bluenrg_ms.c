@@ -38,7 +38,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "my_data.h"
-uint8_t update_motion_value = 0;
+uint32_t update_motion_value = 0;
 /* USER CODE END Includes */
 
 /* Private defines -----------------------------------------------------------*/
@@ -109,7 +109,7 @@ void MX_BlueNRG_MS_Init(void)
   /* USER CODE END BlueNRG_MS_Init_PreTreatment */
 
   /* Initialize the peripherals and the BLE Stack */
-  const char *name = "BlueNRG";
+  const char *name = "Leftgay";
   uint16_t service_handle, dev_name_char_handle, appearance_char_handle;
 
   uint8_t  bdaddr_len_out;

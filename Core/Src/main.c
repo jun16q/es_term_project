@@ -87,7 +87,7 @@ float32_t  snr;
 
 int down = 0;
 int side = 0;
-uint8_t motionNum = 0;
+uint32_t motionNum = 0;
 
 /* USER CODE END PV */
 
@@ -1011,13 +1011,13 @@ void StartDefaultTask(void const * argument)
 	if (pDataXYZ[1]<500 && down == 1){
 		down = 0;
 	}
-	if (pDataXYZ[2]<-1400 && side == 0){
+	if (pDataXYZ[2]>1400 && side == 0){
 		side = 1;
 		printf("side\r\n");
 		motionNum += 1;
 		osDelay(200);
 	}
-	if (pDataXYZ[2]>-500 && side == 1){
+	if (pDataXYZ[2]<500 && side == 1){
 		side = 0;
 	}
 

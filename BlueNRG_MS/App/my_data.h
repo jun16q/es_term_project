@@ -2,6 +2,6 @@
 #define MY_DATA_H
 
 #include <stdint.h>
-extern uint8_t motionNum;  // extern
+extern uint32_t motionNum;  // extern
 
 #endif
