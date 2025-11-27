@@ -88,6 +88,7 @@ float32_t  snr;
 int down = 0;
 int side = 0;
 uint32_t motionNum = 0;
+uint32_t motionTime = 0;
 
 /* USER CODE END PV */
 
@@ -996,6 +997,7 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
+  uint32_t timestamp = 0;
   for(;;)
   {
     int16_t pDataXYZ[3];
@@ -1004,8 +1006,10 @@ void StartDefaultTask(void const * argument)
 //	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
 	if (pDataXYZ[1]>1400 && down == 0){
 		down = 1;
-		printf("down\r\n");
 		motionNum += 2;
+		motionTime = HAL_GetTick() - timestamp;
+		timestamp = HAL_GetTick();
+		printf("down\r\n");
 		osDelay(200);
 	}
 	if (pDataXYZ[1]<500 && down == 1){
@@ -1013,8 +1017,10 @@ void StartDefaultTask(void const * argument)
 	}
 	if (pDataXYZ[2]>1400 && side == 0){
 		side = 1;
-		printf("side\r\n");
 		motionNum += 1;
+		motionTime = HAL_GetTick() - timestamp;
+		timestamp = HAL_GetTick();
+		printf("side\r\n");
 		osDelay(200);
 	}
 	if (pDataXYZ[2]<500 && side == 1){
