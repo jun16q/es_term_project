@@ -45,6 +45,7 @@ do {\
 /* Hardware Characteristics Service */
 #define COPY_MotionNum_SERVICE_UUID(uuid_struct)    COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xbb)
 #define COPY_MotionNum_CHAR_UUID(uuid_struct)    COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xcc)
+#define COPY_MotionTime_CHAR_UUID(uuid_struct)    COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xdd)
 
 #define COPY_HW_SENS_W2ST_SERVICE_UUID(uuid_struct)    COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0x9a,0xb4,0x00,0x02,0xa5,0xd5,0xc5,0x1b)
 #define COPY_ENVIRONMENTAL_W2ST_CHAR_UUID(uuid_struct) COPY_UUID_128(uuid_struct,0x00,0x00,0x00,0x00,0x00,0x01,0x11,0xe1,0xac,0x36,0x00,0x02,0xa5,0xd5,0xc5,0x1b)
@@ -56,7 +57,7 @@ do {\
 uint16_t HWServW2STHandle, EnvironmentalCharHandle, AccGyroMagCharHandle;
 uint16_t SWServW2STHandle, QuaternionsCharHandle;
 
-uint16_t MotionNumServHandle, MotionNumHandle;
+uint16_t MotionNumServHandle, MotionNumHandle, MotionTimeHandle;
 
 /* UUIDS */
 Service_UUID_t service_uuid;
@@ -84,7 +85,7 @@ tBleStatus Add_MotionNum_Service(void)
   COPY_MotionNum_SERVICE_UUID(uuid);
   BLUENRG_memcpy(&service_uuid.Service_UUID_128, uuid, 16);
   ret = aci_gatt_add_serv(UUID_TYPE_128, service_uuid.Service_UUID_128, PRIMARY_SERVICE,
-                          6, &MotionNumServHandle);
+                          8, &MotionNumServHandle);
   if (ret != BLE_STATUS_SUCCESS)
     return BLE_STATUS_ERROR;
 
@@ -100,15 +101,43 @@ tBleStatus Add_MotionNum_Service(void)
   if (ret != BLE_STATUS_SUCCESS)
     return BLE_STATUS_ERROR;
 
+  /* Fill the BLE Characteristc */
+	COPY_MotionTime_CHAR_UUID(uuid);
+	BLUENRG_memcpy(&char_uuid.Char_UUID_128, uuid, 16);
+	ret =  aci_gatt_add_char(MotionNumServHandle, UUID_TYPE_128, char_uuid.Char_UUID_128,
+							 4, // uint32
+							 CHAR_PROP_NOTIFY|CHAR_PROP_READ,
+							 ATTR_PERMISSION_NONE,
+							 GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP,
+							 16, 0, &MotionTimeHandle);
+	if (ret != BLE_STATUS_SUCCESS)
+	  return BLE_STATUS_ERROR;
+
   return BLE_STATUS_SUCCESS;
 }
 
-tBleStatus Char_Update(uint8_t *motionNum)
+tBleStatus Num_Update(uint8_t *motionNum)
 {
   tBleStatus ret;
 
   ret = aci_gatt_update_char_value(MotionNumServHandle, MotionNumHandle,
 				   0, 1, motionNum);
+//  PRINTF("update_char");
+  if (ret != BLE_STATUS_SUCCESS){
+    PRINTF("Error while updating characteristic: 0x%02X\n",ret) ;
+    return BLE_STATUS_ERROR ;
+  }
+
+  return BLE_STATUS_SUCCESS;
+}
+
+
+tBleStatus Time_Update(uint32_t *motionTime)
+{
+  tBleStatus ret;
+
+  ret = aci_gatt_update_char_value(MotionNumServHandle, MotionTimeHandle,
+				   0, 4, motionTime);
 //  PRINTF("update_char");
   if (ret != BLE_STATUS_SUCCESS){
     PRINTF("Error while updating characteristic: 0x%02X\n",ret) ;

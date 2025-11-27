@@ -291,7 +291,7 @@ static void User_Process(void)
     	if (motionNum!=update_motion_value){
     		uint8_t passMotion = motionNum - update_motion_value;
     		update_motion_value = motionNum;
-    		Char_Update(&passMotion);
+    		Num_Update(&passMotion);
     	}
 #if !USE_BUTTON
       HAL_Delay(1); /* wait 1 sec before sending new data */

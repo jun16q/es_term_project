@@ -90,6 +90,7 @@ int side = 0;
 uint32_t motionNum = 0;
 uint32_t motionTime = 0;
 
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
