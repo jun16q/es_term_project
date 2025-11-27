@@ -1011,6 +1011,7 @@ void StartDefaultTask(void const * argument)
 		motionTime = HAL_GetTick() - timestamp;
 		timestamp = HAL_GetTick();
 		printf("down\r\n");
+		printf("%d\r\n", motionTime);
 		osDelay(200);
 	}
 	if (pDataXYZ[1]<500 && down == 1){
@@ -1022,6 +1023,7 @@ void StartDefaultTask(void const * argument)
 		motionTime = HAL_GetTick() - timestamp;
 		timestamp = HAL_GetTick();
 		printf("side\r\n");
+		printf("%d\r\n", motionTime);
 		osDelay(200);
 	}
 	if (pDataXYZ[2]<500 && side == 1){

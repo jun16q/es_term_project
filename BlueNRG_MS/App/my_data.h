@@ -3,5 +3,5 @@
 
 #include <stdint.h>
 extern uint32_t motionNum;  // extern
-
+extern uint32_t motionTime;
 #endif

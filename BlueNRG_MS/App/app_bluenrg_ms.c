@@ -292,7 +292,10 @@ static void User_Process(void)
     		uint8_t passMotion = motionNum - update_motion_value;
     		update_motion_value = motionNum;
     		Num_Update(&passMotion);
+    		uint32_t passTime = motionTime + (passMotion<<16) ;
+    		Time_Update(&passTime);
     	}
+
 #if !USE_BUTTON
       HAL_Delay(1); /* wait 1 sec before sending new data */
 #endif
