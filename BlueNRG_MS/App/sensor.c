@@ -141,9 +141,36 @@ void user_notify(void * pData)
       case EVT_LE_CONN_COMPLETE:
         {
           evt_le_connection_complete *cc = (void *)evt->data;
+          uint16_t conn_interval = cc->interval;
+
+		int interval_ms = conn_interval;
+
+		printf("Connected! Handle: 0x%04X, Interval: %d ms\n",
+				cc->handle, conn_interval, interval_ms);
           GAP_ConnectionComplete_CB(cc->peer_bdaddr, cc->handle);
         }
         break;
+
+      case EVT_LE_CONN_UPDATE_COMPLETE:
+	  {
+		evt_le_connection_update_complete *cu = (void *)evt->data;
+
+		if (cu->status == 0) {
+		  uint16_t new_interval = cu->interval;
+		  float interval_ms = new_interval;
+
+		  printf("Connection Parameters Updated!\n");
+		  printf("New Interval: %d \n", new_interval, interval_ms);
+		  aci_l2cap_connection_parameter_update_request(
+			  connection_handle,
+			  6, // Interval Min
+			  6, // Interval Max
+			  0,  // Latency
+			  200 // Timeout (200 * 10ms = 2s)
+		  );
+		}
+	  }
+	  break;
       }
     }
     break;

@@ -291,7 +291,7 @@ static void User_Process(void)
     	if (motionNum!=update_motion_value){
     		uint8_t passMotion = motionNum - update_motion_value;
     		update_motion_value = motionNum;
-    		Num_Update(&passMotion);
+//    		Num_Update(&passMotion);
     		uint32_t passTime = motionTime + (passMotion<<16) ;
     		Time_Update(&passTime);
     	}

@@ -993,43 +993,54 @@ static void MX_GPIO_Init(void)
   * @param  argument: Not used
   * @retval None
   */
+#define ABS(x) ((x) > 0 ? (x) : -(x))
 /* USER CODE END Header_StartDefaultTask */
 
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
   uint32_t timestamp = 0;
+  uint32_t last_trigger_time = 0;
+  uint32_t debounce_delay = 150;
+  int16_t pDataXYZ[3];
   for(;;)
   {
-    int16_t pDataXYZ[3];
 
-	BSP_ACCELERO_AccGetXYZ(pDataXYZ);
-//	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
-	if (pDataXYZ[1]>1400 && down == 0){
-		down = 1;
-		motionNum += 2;
-		motionTime = HAL_GetTick() - timestamp;
-		timestamp = HAL_GetTick();
-		printf("down\r\n");
-		printf("%d\r\n", motionTime);
-		osDelay(200);
+	uint32_t current_time = HAL_GetTick();
+	if (current_time - last_trigger_time > debounce_delay) {
+		BSP_ACCELERO_AccGetXYZ(pDataXYZ);
+	//	printf("%d, %d, %d\r\n",pDataXYZ[0],pDataXYZ[1],pDataXYZ[2]);
+		if (pDataXYZ[1]>1400 && down == 0){
+//			if (ABS(pDataXYZ[1]) > ABS(pDataXYZ[2]) * 1.2) {
+				down = 1;
+				motionNum += 2;
+				motionTime = HAL_GetTick() - timestamp;
+				timestamp = HAL_GetTick();
+				last_trigger_time = current_time;
+//				printf("down\r\n");
+//				printf("%d\r\n", motionTime);
+//			}
+		}
+
+		if (ABS(pDataXYZ[2])>1400 && side == 0){
+//			if (ABS(pDataXYZ[2]) > ABS(pDataXYZ[1]) * 1.2) {
+				side = 1;
+				motionNum += 1;
+				motionTime = HAL_GetTick() - timestamp;
+				timestamp = HAL_GetTick();
+				last_trigger_time = current_time;
+//				printf("side\r\n");
+//				printf("%d\r\n", motionTime);
+//			}
+		}
 	}
+
 	if (pDataXYZ[1]<500 && down == 1){
 		down = 0;
 	}
-	if (pDataXYZ[2]>1400 && side == 0){
-		side = 1;
-		motionNum += 1;
-		motionTime = HAL_GetTick() - timestamp;
-		timestamp = HAL_GetTick();
-		printf("side\r\n");
-		printf("%d\r\n", motionTime);
-		osDelay(200);
-	}
-	if (pDataXYZ[2]<500 && side == 1){
+	if (ABS(pDataXYZ[2])<500 && side == 1){
 		side = 0;
 	}
-
 
     osDelay(20);
   }

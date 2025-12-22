@@ -58,9 +58,9 @@ extern "C" {
 /*---------- Maximum Advertising Interval (for a number N, Time = N x 0.625 msec) -----------*/
 #define ADV_INTERV_MAX      4096
 /*---------- Minimum Connection Event Interval (for a number N, Time = N x 1.25 msec) -----------*/
-#define L2CAP_INTERV_MIN      9
+#define L2CAP_INTERV_MIN      36
 /*---------- Maximum Connection Event Interval (for a number N, Time = N x 1.25 msec) -----------*/
-#define L2CAP_INTERV_MAX      20
+#define L2CAP_INTERV_MAX      36
 /*---------- Timeout Multiplier (for a number N, Time = N x 10 msec) -----------*/
 #define L2CAP_TIMEOUT_MULTIPLIER      600
 /*---------- HCI Default Timeout -----------*/
